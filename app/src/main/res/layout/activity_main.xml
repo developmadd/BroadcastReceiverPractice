@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/TV_Charge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carga de energía"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/TV_Internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TV_Charge"
+        android:padding="10dp"
+        android:text="Internet" />
+
+    <TextView
+        android:id="@+id/TV_Bluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TV_Internet"
+        android:padding="10dp"
+        android:text="Bluetooth" />
+
+
+
+</RelativeLayout>
