@@ -1,33 +1,33 @@
 
 Broadcast receiver:
-Es un componente que detecta eventos independientes del usuario y que permite que la aplicacaion responda adecuadamente
-ante estas situaciones, algunos ejemplos son, quedarse sin señal de internet, cambio de tipo de conexion a internet,
-bateria baja, conexion o desconexion a carga electrica etc.
+Es un componente que detecta eventos independientes del usuario y que permite que la aplicación responda adecuadamente
+ante estas situaciones, algunos ejemplos son, quedarse sin señal de internet, cambio de tipo de conexión a internet,
+bateria baja, conexión o desconexión a carga electrica etc.
 
-Es necesario crear una clase que herede de Broadcast Receiver, y sobrecargar el metodo onReceive, la cual
-se ejecutara cada vez que haya un cambio en los eventos de interes en el sistema o dispositivo. Es necesario definir
-los filtros de intent para establecer que eventos son de nuestro interes detectar, para esto se crea un objeto tipo
-Intent Filter.
+Es necesario crear una clase que herede de Broadcast Receiver, y sobrecargar el método onReceive, la cual
+se ejecutará cada vez que haya un cambio en los eventos de interés en el sistema o dispositivo. Es necesario definir
+los filtros de intent para establecer que eventos son de nuestro interés detectar, para esto se crea un objeto tipo
+IntentFilter.
 
 Existen dos formas de crear un broadcast receiver:
 
-- Estatica: Se definen en el maifest
-- Dinamica: Se definen durante le ejecución y permiten la activacion o desactivación de la "vigilancia" a dichos eventos.
+- Estática: Se definen en el manifest
+- Dinámica: Se definen durante le ejecución y permiten la activación o desactivación de la "vigilancia" a dichos eventos.
 
-En este proyecto se utilizan la forma dinamica. Una vez creado un objeto de nuestra clase Broadcast Receiver y un objeto Intent
-Filter, estos son registrados usando la funcion registerReceiver de la clase Activity, la cual comienza con la vigilancia de
-acuerdo a los criterios del intent filter y avisando los cambios en el broadcast reveiver, en donde se ejecuta la logica
-pertinente cuando los eventos ocurran. De ser necesario se puede eliminar el registro usando la funcion unregisterReceiver
-de la clase Activity, que desactivara la vigilacia a los eventos, cuando yan no sean de nuestro interés, por ejmplo en un onPause
+En este proyecto se utilizan la forma dinámica. Una vez creado un objeto de nuestra clase BroadcastReceiver y un objeto IntentFilter,
+estos son registrados usando la función registerReceiver de la clase Activity, la cual comienza con la vigilancia de
+acuerdo a los criterios del intent filter y avisando los cambios en el broadcast receiver, en donde se ejecuta la lógica
+pertinente cuando los eventos ocurran. De ser necesario se puede eliminar el registro usando la función unregisterReceiver
+de la clase Activity, que desactivará la vigilacia a los eventos, cuando yan no sean de nuestro interés, por ejemplo en un onPause
 
 
 
 Hilos:
 
-Es conveniente no utilizar el hilo principal(o de UI) para operaciones de larga duracion para evitar los ANR(Application Not Responding).
-El principal proposito del hilo principal es ocuparse de la interfaz grafica. En este proyecto se exploran un par de alternativas.
-- Thread: Es una clase de Java que permite crear un hilo y ejecutar codigo en este empleando un objeto Runnable. Si el hilo que
+Es conveniente no utilizar el hilo principal(o de UI) para operaciones de larga duración para evitar los ANR(Application Not Responding).
+El principal propósito del hilo principal es ocuparse de la interfaz gráfica. En este proyecto se exploran un par de alternativas.
+- Thread: Es una clase de Java que permite crear un hilo y ejecutar código en este empleando un objeto Runnable. Si el hilo que
   lo ha llamado es el principal, podemos volver a comunicarnos con el por medio de runOnUiThread().
-- Async Task: Es una clase de la cual podemos sobrecargar metodos que nos facilitan la comunicacion entre hilos desdela creacion
-  del hilo, el progreso de la tarea en ejecucion y la finalizacion de este.
+- AsyncTask: Es una clase de la cual podemos sobrecargar métodos que nos facilitan la comunicacion entre hilos desde la creación
+  del hilo, el progreso de la tarea en ejecución y la finalización de este.
 
