@@ -43,7 +43,7 @@ class GenericBroadcastReceiver extends BroadcastReceiver {
                         signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Wifi");
                     } else if ( networkInfo.getType() == ConnectivityManager.TYPE_MOBILE ){
                         signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Mobile");
-                    } else{
+                    } else {
                         signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Desconocido");
                     }
                 } else {

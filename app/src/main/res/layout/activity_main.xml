@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -17,7 +18,6 @@
         android:id="@+id/TV_Internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/TV_Charge"
         android:padding="10dp"
         android:text="Internet" />
 
@@ -25,10 +25,9 @@
         android:id="@+id/TV_Bluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/TV_Internet"
         android:padding="10dp"
         android:text="Bluetooth" />
 
 
 
-</RelativeLayout>
+</LinearLayout>
