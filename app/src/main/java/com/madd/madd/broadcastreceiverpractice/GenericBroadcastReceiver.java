@@ -14,6 +14,10 @@ class GenericBroadcastReceiver extends BroadcastReceiver {
         this.signalAdministrator = signalAdministrator;
     }
 
+
+    // The method onReceive is executed when one of the actions added to intent filter occurs
+    // Our implemented interface executes the correct method when an specific action happens and send the
+    // correct message
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -40,14 +44,14 @@ class GenericBroadcastReceiver extends BroadcastReceiver {
                             (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                     if( networkInfo.getType() == ConnectivityManager.TYPE_WIFI ){
-                        signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Wifi");
+                        signalAdministrator.onChangeConnectivityStatus(true,"Wifi");
                     } else if ( networkInfo.getType() == ConnectivityManager.TYPE_MOBILE ){
-                        signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Mobile");
+                        signalAdministrator.onChangeConnectivityStatus(true,"Mobile");
                     } else {
-                        signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"Desconocido");
+                        signalAdministrator.onChangeConnectivityStatus(true,"Desconocido");
                     }
                 } else {
-                    signalAdministrator.onChangeConnectivityStatus(connectivityStatus,"");
+                    signalAdministrator.onChangeConnectivityStatus(false,"");
                 }
 
                 break;
