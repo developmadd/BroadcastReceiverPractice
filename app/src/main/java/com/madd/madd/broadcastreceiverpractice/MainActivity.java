@@ -22,13 +22,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewCharge;
     TextView textViewInternet;
     TextView textViewBluetooth;
-    Button buttonMusic;
-    CheckBox checkBoxMusic;
-    Button buttonLongTask;
-    EditText editTextLongTask;
 
     IntentFilter intentFilter;
-    Intent intentServiceMusic;
     GenericBroadcastReceiver broadCastReceiver;
 
     @Override
@@ -39,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         textViewCharge = findViewById(R.id.TV_Charge);
         textViewInternet = findViewById(R.id.TV_Internet);
         textViewBluetooth = findViewById(R.id.TV_Bluetooth);
-        buttonMusic = findViewById(R.id.BTN_Music);
-        checkBoxMusic = findViewById(R.id.CHK_Music);
-        buttonLongTask = findViewById(R.id.BTN_Long_Task);
-        editTextLongTask = findViewById(R.id.ET_Long_Task);
+
 
         // Create intent filter for dynamic broadcast receiver
         intentFilter = new IntentFilter();
@@ -89,35 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // Start a music service this is executed on main thread and is possible to stop it
-        // when activity also stop
-        buttonMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(buttonMusic.getText().equals("Comenzar") ) {
-                    intentServiceMusic = new Intent(getApplicationContext(), MusicService.class);
-                    startService(intentServiceMusic);
-                    buttonMusic.setText("Detener");
-                } else {
-                    stopService(intentServiceMusic);
-                    intentServiceMusic = null;
-                    buttonMusic.setText("Comenzar");
-                }
-            }
-        });
-
-        //Start a long task that sleep a thread for n seconds(duration). This service is executed in a second thread.
-        buttonLongTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!editTextLongTask.getText().toString().isEmpty()) {
-                    Intent intentLongTask = new Intent(getApplicationContext(), CounterService.class);
-                    intentLongTask.putExtra("duration", Integer.valueOf(editTextLongTask.getText().toString()));
-                    startService(intentLongTask);
-                }
-            }
-        });
-
 
     }
 
@@ -159,28 +122,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Register broadcast receiver when the app is on foreground
-    // Check if the music service is created, restart
     @Override
     protected void onResume() {
         super.onResume();
         registerReceiver(broadCastReceiver,intentFilter);
-        if( intentServiceMusic != null ) {
-            startService(intentServiceMusic);
-        }
     }
 
 
     // Unregister broadcast receiver when the app is on background
-    // Check if the music service is created and user decides to stop service when activities does
     @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(broadCastReceiver);
-        if( intentServiceMusic != null && checkBoxMusic.isChecked() ) {
-            stopService(intentServiceMusic);
-        }
     }
 
 
 
 }
+
+
+// PENDIENTES
+//
+//  intent filter ¿Como activar actividad, servicio o broadcast receiver a traves de intent?
+//  intent action edit, data image
+//  jobscheduler
+//  onBind
+//  sendbroadcast
+//  parseable serializable
+//
+//
+//
+
+
+

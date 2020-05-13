@@ -20,15 +20,3 @@ acuerdo a los criterios del intent filter y avisando los cambios en el broadcast
 pertinente cuando los eventos ocurran. De ser necesario se puede eliminar el registro usando la función unregisterReceiver
 de la clase Activity, que desactivará la vigilacia a los eventos, cuando yan no sean de nuestro interés, por ejemplo en un onPause
 
-
-Service:
-
-Componente que permite la ejecución de procesos de larga duracion en segundo plano, estos son independientes de la interfaz
-de usuario y se ejecutan incluso cuando la aplicacion esta en background o cuando nos movemos entre actividades. Un servicio es
-ejecutad en el hilo principal por lo cual puede ocurrir un ANR, es recomendable ejecutarlo en un segundo hilo de trabajo.
-En esta practica se ejecutan dos tipos de servicios:
-- El primero es una melodia que suena de fondo durante y que puede ser detenida en cualquier momento, un checkbox nos permite
-  decidir si el servicio continua cuando la actividad este en background.
-- El segundo es una tarea que bloquea el hilo donde es ejecutado por N segundos. Para esto se genera un hilo de trabajo y se
-  realiza la comunicacion mediante un Handler. Dentro del handleMessage del handler se envia una notificacion al usuario, debido
-  a que el handler es creado dentro del servicio, la notificacion en enviada incluso cuando la aplicacion esta en segundo plano.
